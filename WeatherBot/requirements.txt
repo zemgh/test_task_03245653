@@ -1,3 +1,5 @@
 aiohttp==3.10.10
 python-dotenv==1.0.1
 aiogram==3.13.1
+aiogoogletrans==3.3.3
+langdetect==1.0.9
