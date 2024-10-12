@@ -1,0 +1,10 @@
+services:
+
+  bot:
+    container_name: bot
+    build: ./WeatherBot
+    env_file:
+      - .env
+    command: python run.py
+    ports:
+      - 80:80
