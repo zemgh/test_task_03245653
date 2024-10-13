@@ -5,7 +5,7 @@ from lingua import Language, LanguageDetectorBuilder
 
 class TranslateError(Exception):
     def __init__(self):
-        super().__init__(f'Неверный язык ввода (поддерживается только RU/EN)')
+        super().__init__('Неверный язык ввода (поддерживается только RU/EN)')
 
 
 class TranslateService:

@@ -7,12 +7,17 @@ from services.translate import TranslateService
 async def test_translate():
     translator = TranslateService()
 
-    # Ввод RU
+    # RU > ENG
     ru_string = 'тест'
     result = await translator.get_eng_string(ru_string)
     assert result == 'test'
 
-    # Ввод EN
+    # ENG > RU
     en_string = 'test'
-    result = await translator.get_eng_string(en_string)
-    assert result == 'test'
+    result = await translator.translate_to_ru(en_string)
+    assert result == 'тест'
+
+
+
+
+

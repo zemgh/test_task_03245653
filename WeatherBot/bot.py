@@ -10,7 +10,7 @@ TRANSLATE_SERVICE = TranslateService()
 WEATHER_SERVICE = WeatherService(TRANSLATE_SERVICE)
 
 load_dotenv()
-API_TOKEN = os.getenv("TELEGRAM_API_TOKEN")
+API_TOKEN = os.getenv('TELEGRAM_API_TOKEN')
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot=bot)

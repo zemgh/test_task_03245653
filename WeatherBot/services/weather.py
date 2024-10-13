@@ -28,18 +28,19 @@ class WeatherService:
             async with aiohttp.ClientSession() as session:
                 response = await session.get(f'{self._API_URL}/current.json', params=params)
                 data = await response.json()
+
                 return await self._get_weather_info(data)
 
         except TranslateError as e:
             return str(e)
 
-        except aiohttp.ClientError:
+        except aiohttp.ClientError as e:
             # log e
             return 'Ошибка сервера погоды'
 
         except Exception as e:
             # log e
-            return f'Ошибка сервера: {e}'
+            return f'Ошибка сервера'
 
     async def _get_params(self, city: str) -> dict:
         city = await self.translator.get_eng_string(city)
@@ -56,12 +57,12 @@ class WeatherService:
                 return 'Увы, такого города не существует :('
 
         data = await self._get_weather_data(response)
+
         lst = [f'{key}: {value}' for key, value in data.items()]
         string = '\n'.join(lst)
-
         return string
 
-    async def _get_weather_data(self, response: json) -> dict:
+    async def _get_weather_data(self, response: dict) -> dict:
         en_city = response['location']['name']
         description = response['current']['condition']['text']
 
